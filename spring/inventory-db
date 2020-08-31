@@ -1,0 +1,50 @@
+/*
+SQLyog Community v13.1.1 (32 bit)
+MySQL - 10.1.38-MariaDB : Database - inventory
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`inventory` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `inventory`;
+
+/*Table structure for table `inventory` */
+
+DROP TABLE IF EXISTS `inventory`;
+
+CREATE TABLE `inventory` (
+  `uuid` varchar(36) NOT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `last_modified_date` datetime(6) DEFAULT NULL,
+  `product_code` varchar(255) DEFAULT NULL,
+  `product_id` varchar(36) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `version` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `inventory` */
+
+insert  into `inventory`(`uuid`,`created_date`,`last_modified_date`,`product_code`,`product_id`,`quantity`,`version`) values 
+('593fe8e5-4c09-4ab6-aeb0-9f2c689215b6','2020-08-26 11:07:21.000000','2020-08-26 22:05:17.000000','c5','e9a5f567-7997-42f2-94fe-7661c7e9cd74',100,1),
+('660a69b8-5486-465a-9ed5-8a28605535fd','2020-08-26 11:26:24.000000','2020-08-26 22:05:14.000000','c8','6f4cc546-289d-4e79-84d1-b3f353225e2a',20,1),
+('847195a8-12d9-4af1-906d-bcd62a8a75e1','2020-08-26 22:05:20.000000','2020-08-26 17:16:35.000000','c4','6ea140ad-db24-4885-8613-992f512db206',99,2),
+('c0a2502d-04cc-4533-ab90-c6726ff6bd71','2020-08-26 11:09:53.000000','2020-08-26 21:30:04.000000','c7','3c8b5885-9df8-406e-8d51-347a7a63b622',12,4),
+('c58fa29d-b60b-481d-b7a5-c6044f72cb95','2020-05-25 14:09:17.000000','2020-07-06 12:33:02.000000','c1','644dacda-94bb-4a55-aefd-acc5d803904b',500,513),
+('ce233bf1-97f4-42bb-9f24-99b1d7e80857','2020-05-25 14:10:18.000000','2020-08-25 14:04:58.000000','c2','43ac72fb-e595-46a9-9c81-c5fc24944d0d',455,880),
+('d5b73f4f-e66c-4b2c-81ed-b1f8f7d5fe8b','2020-08-26 11:08:29.000000','2020-08-26 22:13:03.000000','c6','1026bfd6-b48b-4454-9ca7-c3fdde3c416c',32,19),
+('ec3df8ef-3894-418c-8b96-a30d25816812','2020-08-25 12:02:02.000000','2020-08-25 12:02:04.000000','p3','ef604dd0-5823-4653-be5e-c487307e1f76',500,0),
+('f87ffdd9-7627-4fc1-b900-be9927cfca28','2020-08-25 12:01:56.000000','2020-08-26 22:26:51.000000','productCode','03b943dd-6ee1-4c89-85a3-a3d362490c69',93,9);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

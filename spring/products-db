@@ -1,0 +1,53 @@
+/*
+SQLyog Community v13.1.1 (32 bit)
+MySQL - 10.1.38-MariaDB : Database - product
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`product` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `product`;
+
+/*Table structure for table `product` */
+
+DROP TABLE IF EXISTS `product`;
+
+CREATE TABLE `product` (
+  `uuid` varchar(36) NOT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `last_modified_date` datetime(6) DEFAULT NULL,
+  `price` decimal(19,2) DEFAULT NULL,
+  `product_code` varchar(255) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `version` bigint(20) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `product` */
+
+insert  into `product`(`uuid`,`created_date`,`description`,`last_modified_date`,`price`,`product_code`,`product_name`,`type`,`version`,`url`) values 
+('03b943dd-6ee1-4c89-85a3-a3d362490c69','2020-08-21 12:17:44.000000','desc','2020-08-21 12:17:44.000000',100.00,'productCode','Microphone Crimson\r\n','headphones',0,'JBL_HEADPHONES_HERO_LRG.jpg'),
+('1026bfd6-b48b-4454-9ca7-c3fdde3c416c','2020-08-26 11:08:55.000000','desc','2020-08-26 22:05:49.000000',500.00,'c6','Dark Speaker','speaker',0,'JBL-speaker.jpg'),
+('3c8b5885-9df8-406e-8d51-347a7a63b622','2020-08-26 11:10:17.000000','desc','2020-08-26 22:05:51.000000',75.00,'c7','Bose Speaker','speaker',0,'bose-home-speaker.png'),
+('43ac72fb-e595-46a9-9c81-c5fc24944d0d','2020-05-25 13:00:22.000000','desc','2020-05-25 13:04:37.000000',250.00,'c2','Heaphones Red','headphones',1,'headphones-red.jpg'),
+('644dacda-94bb-4a55-aefd-acc5d803904b','2020-05-02 13:33:07.000000','desc','2020-05-04 18:35:22.000000',150.00,'c1','Heaphones Rose','headphones',1,'headphones-rose-gold.jpg'),
+('6ea140ad-db24-4885-8613-992f512db206','2020-08-26 11:05:54.000000','desc','2020-08-26 22:05:53.000000',50.00,'c4','Speaker Ph','speaker',0,'speaker-philips.jpg'),
+('6f4cc546-289d-4e79-84d1-b3f353225e2a','2020-08-26 11:27:47.000000','desc','2020-08-26 22:05:55.000000',450.00,'c8','Ph Speaker','speaker',0,'speaker.png'),
+('e9a5f567-7997-42f2-94fe-7661c7e9cd74','2020-08-26 11:07:35.000000','desc','2020-08-26 22:05:57.000000',100.00,'c5','Speaker JBG Small','speaker',0,'speaker-jbl.png'),
+('ef604dd0-5823-4653-be5e-c487307e1f76','2020-08-21 13:23:56.000000','desc','2020-08-21 13:23:56.000000',100.00,'p3','Microphone Conventions','headphones',0,'JBL__Headphones_LightBlue_Fold.jpg');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

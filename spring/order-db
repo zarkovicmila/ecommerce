@@ -1,0 +1,80 @@
+/*
+SQLyog Community v13.1.1 (32 bit)
+MySQL - 10.1.38-MariaDB : Database - order_micro
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`order_micro` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `order_micro`;
+
+/*Table structure for table `customer` */
+
+DROP TABLE IF EXISTS `customer`;
+
+CREATE TABLE `customer` (
+  `uuid` varchar(36) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `last_modified_date` datetime(6) DEFAULT NULL,
+  `version` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `customer` */
+
+/*Table structure for table `order` */
+
+DROP TABLE IF EXISTS `order`;
+
+CREATE TABLE `order` (
+  `uuid` varchar(36) NOT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `last_modified_date` datetime(6) DEFAULT NULL,
+  `version` bigint(20) DEFAULT NULL,
+  `customer_uuid` varchar(36) DEFAULT NULL,
+  `order_total` decimal(19,2) DEFAULT NULL,
+  `order_status` enum('NEW','ALLOCATION_PENDING','ALLOCATED','CANCELLED','PICKED_UP','DELIVERED','ALLOCATION_EXCEPTION') DEFAULT NULL,
+  PRIMARY KEY (`uuid`),
+  KEY `customer_uuid` (`customer_uuid`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customer_uuid`) REFERENCES `customer` (`uuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `order` */
+
+/*Table structure for table `order_item` */
+
+DROP TABLE IF EXISTS `order_item`;
+
+CREATE TABLE `order_item` (
+  `serial_number` int(11) NOT NULL,
+  `order_uuid` varchar(36) NOT NULL,
+  `created_date` datetime(6) DEFAULT NULL,
+  `last_modified_date` datetime(6) DEFAULT NULL,
+  `product_code` varchar(255) DEFAULT NULL,
+  `product_id` varchar(255) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `subtotal` decimal(19,2) DEFAULT NULL,
+  `version` bigint(20) DEFAULT NULL,
+  `quantity_allocated` int(11) DEFAULT NULL,
+  PRIMARY KEY (`serial_number`,`order_uuid`),
+  KEY `order_uuid` (`order_uuid`),
+  CONSTRAINT `order_item_ibfk_1` FOREIGN KEY (`order_uuid`) REFERENCES `order` (`uuid`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `order_item` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
