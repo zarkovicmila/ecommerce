@@ -1,0 +1,47 @@
+<nav>
+  <div class="nav-wrapper">
+    <a routerLink="/home"ng  class="brand-logo center hide-on-med-and-down">Angular</a>
+    <ul id="nav-mobile" class="left">
+      <li><a routerLink="/cart"><i class="material-icons">shopping_cart</i></a></li>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/catalog">Catalog</a></li>
+      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Product type<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<ul id="dropdown1" class="dropdown-content">
+  <li><a [routerLink]="['catalog']" [queryParams]="{type: 'headphones'}">Headphones</a></li>
+  <li class="divider"></li>
+  <li><a [routerLink]="['catalog']" [queryParams]="{ type:'speaker'}">Speaker</a></li>
+</ul>
+
+<router-outlet></router-outlet>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">E-commerce Angular</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Facebook</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Instagram</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Twitter</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Youtube</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Copyright FON
+    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
+

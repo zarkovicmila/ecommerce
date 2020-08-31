@@ -1,0 +1,49 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: inventory-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventory
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    stream:
+      bindings:
+        output:
+          destination: allocationOrderResponseTopic
+          content-type: application/json
+        input:
+          destination: allocateOrderTopic
+          content-type: application/json
+          group: inventoryGroup
+        deallocateOrderInput:
+          destination: deallocateOrderTopic
+          content-type: application/json
+          group: deallocateGroup
+      kafka:
+        binder:
+          brokers: localhost:9092
+          zkNodes: localhost
+
+spring.jpa.properties.hibernate.dialect.storage_engine: innodb
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    fon.inventoryservice: debug

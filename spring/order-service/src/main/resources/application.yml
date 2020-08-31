@@ -1,0 +1,57 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/order_micro
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    stream:
+      bindings:
+        allocationResponseInput:
+          destination: allocationOrderResponseTopic
+          content-type: application/json
+          group: orderingAllocationGroup
+        allocateOrderOutput:
+          destination: allocateOrderTopic
+          content-type: application/json
+        deallocateOrderOutput:
+          destination: deallocateOrderTopic
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
+          zkNodes: localhost
+
+
+spring.jpa.properties.hibernate.dialect.storage_engine: innodb
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    fon.orderservice: debug
+
+#spring.jpa.show-sql: true
+#spring.jpa.properties.hibernate.format_sql: true
+#logging.level.org.hibernate.SQL: DEBUG
+#logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#logging.level.org.springframework.jdbc.core.JdbcTemplate: DEBUG
+#logging.level.org.springframework.jdbc.core.StatementCreatorUtils: TRACE

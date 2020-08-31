@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="title">
+    Shopping Bag
+  </div>
+  <div style="overflow-x:auto;">
+    <table class="shopping-cart-table">
+      <tr>
+        <th>#</th>
+        <th>Picture</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of cartItems; let i=index;">
+        <td>{{i+1}}</td>
+        <td><img src="../assets/images/{{item.url}}" alt="item" class="rounded-sm" style="width: 120px;"></td>
+        <td>{{item.productName}}</td>
+        <td>{{item.price}}$</td>
+        <td><input (change)="updatedItemQuantity(item)" type="number" [(ngModel)]="item.quantity" min="1" style="width: 40px;"></td>
+        <td>{{item.subtotal}} $</td>
+        <td><a class="btn-floating btn-large waves-effect waves-light" (click)="removeItemFromCart(i)"><i class="material-icons">remove_shopping_cart</i></a></td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="cartItems.length>0; else elseBlock" class="totals-item">
+    <label>Grand Total</label>
+    <div class="totals-value" id="cart-total">{{total}} $</div>
+    <input routerLink="/checkout" type="submit" value="Continue to checkout" class="btn"> 
+  </div>
+  <ng-template #elseBlock>
+    <div class="container">
+      <h5 class="center-align">Your shopping bag is empty.</h5>
+    </div>
+  </ng-template>
+</div>

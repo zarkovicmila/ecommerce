@@ -1,0 +1,22 @@
+.title {
+    height: 60px;
+    border-bottom: 1px solid #E1E8EE;
+    padding: 5px 30px;
+    color: #5E6977;
+    font-size: 28px;
+    font-weight: 400;
+  }
+
+
+.shopping-cart-table {
+  background: #FFFFFF;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+  border-radius: 6px;
+  margin: 20px;
+}
+
+.totals-item {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  font-size: 20px;
+}
